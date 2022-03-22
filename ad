@@ -1,0 +1,35 @@
+[33mcommit 4a00bf301a9a772613085bcb561340f166a02a6a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: diegopuma <diegopumacode@gmail.com>
+Date:   Tue Mar 22 09:08:33 2022 -0500
+
+    adding button variant and colors
+
+[33mcommit 79ffe6ba74b62e6b99e78faa70d57bf09beefee9[m
+Author: diegopuma <diegopumacode@gmail.com>
+Date:   Tue Mar 22 09:01:10 2022 -0500
+
+    adding navbar and content component
+
+[33mcommit 39e45c7a487ddaa6b706c477e368e02630e88f1a[m
+Author: diegopuma <diegopumacode@gmail.com>
+Date:   Tue Mar 22 08:51:48 2022 -0500
+
+    adding routing and pages
+
+[33mcommit ec0828f2dd03e0a0cd97e54c0f6906f6f5e415a2[m
+Author: diegopuma <diegopumacode@gmail.com>
+Date:   Tue Mar 22 08:46:10 2022 -0500
+
+    adding font and chakra theme
+
+[33mcommit b0da61a660a6642079f458fa91f36c5112e95aee[m
+Author: diegopuma <diegopumacode@gmail.com>
+Date:   Tue Mar 22 08:42:34 2022 -0500
+
+    adding dependencies
+
+[33mcommit 6455e0785e756034f98b31600e7eb900a426528f[m
+Author: diegopuma <diegopumacode@gmail.com>
+Date:   Tue Mar 22 08:37:15 2022 -0500
+
+    Initialize project using Create React App

@@ -10,7 +10,7 @@ const styles = {
 
 const colors = {
     primary: "#A775FE",
-    secondary: "#CBABE1",
+    secondary: "#F7F9F9",
     brand:"#FBDA04",
     highlight: "#7009B4",
     danger: "#F32D46",
