@@ -27,25 +27,21 @@ import { useForm } from 'react-hook-form';
  */
 export default function TweetForm({ defaultValues, onFormSubmit, isLoading, actionAfterSubmit, titleSubmit = 'Comentario' }) {
 
-    const { register, handleSubmit } = useForm({ defaultValues })
+    const { register, handleSubmit, reset } = useForm({ defaultValues })
 
     const onSubmit = handleSubmit((data) => {
-        console.log(data)
-        onFormSubmit(data)
+        onFormSubmit(data, reset)
         actionAfterSubmit()
     })
 
     return (
         <>
-
             <Box as='form' display='flex' flexDirection='column' gridGap='2' onSubmit={onSubmit} padding={4} background='secondary' borderRadius='.8rem' marginY={5} alignItems='flex-end'>
-
                 <FormControl id="email" isRequired >
                     <Input variant='flushed' type='email'  size='sm' placeholder='Correo electronico' {...register("email")} id="email" name="email"/>
                 </FormControl>
-                <FormControl id="lastName" isRequired>
-                    
-                    <Input variant='flushed' size='sm' placeholder='Titulo' {...register("lastName")} id="lastName" name="lastName" />
+                <FormControl id="title" isRequired>
+                    <Input variant='flushed' size='sm' placeholder='Titulo' {...register("title")} id="title" name="title" />
                 </FormControl>
                 <FormControl id="content" isRequired>
                     
@@ -56,7 +52,6 @@ export default function TweetForm({ defaultValues, onFormSubmit, isLoading, acti
                     {isLoading ? <Spinner size="xs" /> : titleSubmit}
                 </Button>
             </Box>
-
         </>
     )
 }
