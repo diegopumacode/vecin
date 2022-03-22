@@ -1,4 +1,3 @@
-import { whiten } from "@chakra-ui/theme-tools"
 export const Text = {
     // style object for base or default style
     baseStyle: {},

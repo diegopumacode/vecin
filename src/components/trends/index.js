@@ -5,7 +5,12 @@ import { trendsData } from './data'
 
 export default function Trends() {
     return (
-        <Box background='secondary' padding={5} borderRadius='.8rem' position={'sticky'} top='20px'>
+        <Box
+            background='secondary'
+            padding={5}
+            borderRadius='.8rem'
+            position={'sticky'}
+            top='20px'>
             <Text
                 fontSize='xl'
                 fontWeight='bold'
@@ -15,15 +20,15 @@ export default function Trends() {
             </Text>
             <Flex flexDirection={'column'}>
                 {
-                    trendsData.map(trend=>(
+                    trendsData.map(trend => (
                         <Box paddingY={2} key={trend.id}>
                             <Text variant='info'>Trending in {trend.ubication}</Text>
-                            <Text fontWeight={'bold'}>#{trend.hash}</Text>
+                            <Text fontWeight='bold'>#{trend.hash}</Text>
                             <Text variant='info'>{formatInteger(trend.tweets)} Tweets</Text>
                         </Box>
                     ))
                 }
-                
+
             </Flex>
         </Box>
     )
