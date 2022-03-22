@@ -17,9 +17,9 @@ export default function Trends() {
                 {
                     trendsData.map(trend=>(
                         <Box paddingY={2} key={trend.id}>
-                            <Text color={'gray'} fontSize='xs'>Trending in {trend.ubication}</Text>
+                            <Text variant='info'>Trending in {trend.ubication}</Text>
                             <Text fontWeight={'bold'}>#{trend.hash}</Text>
-                            <Text color={'gray'} fontSize='xs'>{formatInteger(trend.tweets)} Tweets</Text>
+                            <Text variant='info'>{formatInteger(trend.tweets)} Tweets</Text>
                         </Box>
                     ))
                 }
