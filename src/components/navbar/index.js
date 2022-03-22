@@ -5,14 +5,14 @@ import Content from '../Content'
 
 export default function Navbar() {
     return (
-        <Box paddingY={5}>
+        <Box paddingY={5} background='brand' >
             <Content
                 display='flex'
                 justifyContent='space-between'
                 alignItems='center'>
                 <Logo />
                 <Flex gap={5} justifyContent='space-between' alignItems='center'>
-                    <Button type='button' size='sm'>
+                    <Button type='button' size='sm' variant='primary'>
                         Realizar Tweets
                     </Button>
                     <Actions />

@@ -7,7 +7,7 @@ export default function Main() {
     return (
         <>
             <Navbar />
-            <Content>
+            <Content marginTop={5}>
                 <Outlet />
             </Content>
         </>
