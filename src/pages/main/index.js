@@ -1,11 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Content from '../../components/Content'
+import Navbar from '../../components/navbar'
 
 export default function Main() {
-  return (
-    <div>
-        <h1>Main</h1>
-        <Outlet/>
-    </div>
-  )
+    return (
+        <>
+            <Navbar />
+            <Content>
+                <Outlet />
+            </Content>
+        </>
+    )
 }
