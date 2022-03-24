@@ -30,8 +30,8 @@ export default function TweetForm({ defaultValues, onFormSubmit, isLoading, acti
     const { register, handleSubmit, reset } = useForm({ defaultValues })
 
     const onSubmit = handleSubmit((data) => {
-        onFormSubmit(data, reset)
-        actionAfterSubmit()
+        onFormSubmit(data)
+        // actionAfterSubmit()
     })
 
     return (

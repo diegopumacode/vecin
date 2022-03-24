@@ -2,8 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const findTweets = createAsyncThunk(
     "tweets/findTweets",
-    async () => {
-        const response = await fetch(`http://localhost:8000/post`, {
+    async ({ currentPage }) => {
+        const response = await fetch(`http://localhost:8000/post?skip=${currentPage}`, {
             method: "GET",
         });
 

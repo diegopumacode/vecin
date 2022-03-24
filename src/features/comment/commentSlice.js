@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { createComment, findByIdTweet } from './api'
 
 const initialComment = []
-
 const commentSlice = createSlice({
     name: 'comment',
     initialState: {

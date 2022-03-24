@@ -1,6 +1,8 @@
 import React from 'react'
 import { Avatar, Box, Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text } from '@chakra-ui/react'
 import Content from '../Content'
+import ModalButton from '../ModalButton'
+import TweetCreate from '../../features/tweets/TweetCreate'
 
 
 export default function Navbar() {
@@ -12,9 +14,9 @@ export default function Navbar() {
                 alignItems='center'>
                 <Logo />
                 <Flex gap={5} justifyContent='space-between' alignItems='center'>
-                    <Button type='button' size='sm' variant='primary'>
-                        Realizar Tweets
-                    </Button>
+                    <ModalButton titleModal="Publicar post" buttontitle={'Publicar Post'}>
+                        <TweetCreate/>
+                    </ModalButton>
                     <Actions />
                 </Flex>
             </Content>

@@ -2,6 +2,7 @@ import { Avatar, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 
 export default function CommentTweet({tweet}) {
+    
     return (
         <Flex
             gridGap={3}

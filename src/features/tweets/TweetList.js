@@ -1,31 +1,38 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { Button, Text } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { useTweetsQuery } from '../../api/tweetsApi'
 import TweetSkeleton from '../../components/skeletons/TweetSkeleton'
-import { findTweets } from './api'
+
+
 import Tweet from './Tweet'
 
 export default function TweetList() {
-  const dispatch = useDispatch()
-  const tweets = useSelector((state) => state.tweetReducer.items)
-  const status = useSelector((state) => state.tweetReducer.statusList)
 
-  useEffect(() => {
-    dispatch(findTweets())
+  const [page, setPage] = useState(1)
 
-  }, [])
+  const { data, error, isLoading, currentData, isFetching } = useTweetsQuery({ page:1 })
 
+
+  // const { combinedData, readMore, refresh} = useInfiniteScroll(useTweetsQuery)
+  // console.log(combinedData, refresh)
   return (
     <>
+
       {
-        status === "loading" ? (
-          <TweetSkeleton />
-        ) : (
-          tweets.map(tweet => <Tweet key={tweet.id} tweet={tweet} />)
-        )
+        isLoading
+          ? <div>asdasd</div>
+          : <>
+            {
+              data?.items?.map((tweet) => {
+                return <Tweet key={tweet.id} tweet={tweet} />
+              })
+            }</>
       }
 
 
-
+      {/* <Button onClick={readMore}>
+        Leer mas
+      </Button> */}
     </>
   )
 }

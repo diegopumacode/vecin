@@ -11,6 +11,7 @@ export default function Post() {
 
     return (
         <div>
+            
             <Flex gap={4} alignItems='center' marginBottom={5}>
                 <IconButton icon={<AiFillLeftCircle />} onClick={()=> history.back()}>
                     back
