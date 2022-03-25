@@ -1,9 +1,9 @@
 import React from 'react'
 import { Box, Flex, Text } from '@chakra-ui/react'
 import formatInteger from '../../utils/formatInteger'
-import { trendsData } from './data'
 
-export default function Trends() {
+export default function Trends({trends}) {
+
     return (
         <Box
             background='secondary'
@@ -20,7 +20,7 @@ export default function Trends() {
             </Text>
             <Flex flexDirection={'column'}>
                 {
-                    trendsData.map(trend => (
+                    trends?.map(trend => (
                         <Box paddingY={2} key={trend.id}>
                             <Text variant='info'>Trending in {trend.ubication}</Text>
                             <Text fontWeight='bold'>#{trend.hash}</Text>

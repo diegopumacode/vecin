@@ -1,21 +1,42 @@
 import React from 'react'
-import { useAddTweetMutation } from '../../api/tweetsApi'
-import TweetForm from '../../components/TweetForm'
+import TweetForm from '../../components/tweetForm'
+import useCreateTweet from '../../hooks/useCreateTweet'
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
 
 export default function TweetCreate() {
 
-    const [addTweet] = useAddTweetMutation()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { createTweet, isLoading, isSuccess, resetStatus } = useCreateTweet()
 
     const formSubmit = async (data) => {
-        try {
-            await addTweet(data)
-        } catch (error) {
-            alert(error)
-        }
+        createTweet(data)
+    }
+
+    const actionAfterSubmit = () => {
+        resetStatus()
+        onClose()
     }
 
 
     return (
-        <TweetForm onFormSubmit={formSubmit} />
+        <>
+
+            <Button onClick={onOpen} variant='primary' size={'sm'}>Publicar Post</Button>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Crear publicacion</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <TweetForm
+                            onFormSubmit={formSubmit}
+                            isLoading={isLoading}
+                            isSuccess={isSuccess}
+                            actionAfterSubmit={actionAfterSubmit}
+                            titleSubmit='Publicar' />
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+        </>
     )
 }

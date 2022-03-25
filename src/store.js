@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import tweetReducer from './features/tweets/tweetSlice'
-import commentReducer from './features/comment/commentSlice'
+import tweetReducer from './services/tweetSlice'
 import { tweetsApi } from './api/tweetsApi'
 export const store = configureStore({
     reducer: {
-        tweetReducer,
-        commentReducer,
+        tweets:tweetReducer,
         [tweetsApi.reducerPath]: tweetsApi.reducer
     },
     middleware: (getDefaultMiddleware) =>

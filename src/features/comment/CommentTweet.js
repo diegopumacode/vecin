@@ -1,5 +1,6 @@
-import { Avatar, Flex, Text } from '@chakra-ui/react'
 import React from 'react'
+import { AiOutlineComment } from "react-icons/ai";
+import { Avatar, Flex, Text } from '@chakra-ui/react'
 
 export default function CommentTweet({tweet}) {
     
@@ -8,7 +9,6 @@ export default function CommentTweet({tweet}) {
             gridGap={3}
             paddingY={5}
             paddingX={1}
-            cursor='pointer'
             borderBottom='1px solid'
             borderColor='#D6D1D7'
             flexDirection='column'>
@@ -29,17 +29,10 @@ export default function CommentTweet({tweet}) {
                 <Text fontSize='2xl' marginTop={2}>
                     {tweet.content}
                 </Text>
-                {/* <Flex gridGap={5} marginTop={2}>
-                    <ActionStyled>
-                        <div>
-                            <AiFillLike />
-                        </div>
-                        {tweet.likes}
-                    </ActionStyled>
-                    <Flex cursor='pointer' alignItems='center' gridGap={2} color='#8E8B8F'>
-                        <AiFillDislike />
-                    </Flex>
-                </Flex> */}
+                <Text display={'flex'} gap={2} alignItems={'center'} fontWeight='bold'>
+                    <AiOutlineComment/>
+                    {tweet.comments}
+                </Text>
             </Flex>
         </Flex>
     )

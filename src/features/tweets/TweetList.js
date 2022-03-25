@@ -1,38 +1,56 @@
-import { Button, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
-import { useTweetsQuery } from '../../api/tweetsApi'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import TweetSkeleton from '../../components/skeletons/TweetSkeleton'
+import useGetTweets from '../../hooks/useGetTweets'
+import useNearScreen from '../../hooks/useNearScreen'
 
-
+import debounce from 'just-debounce-it'
 import Tweet from './Tweet'
+import { Center, Spinner } from '@chakra-ui/react'
 
 export default function TweetList() {
 
   const [page, setPage] = useState(1)
 
-  const { data, error, isLoading, currentData, isFetching } = useTweetsQuery({ page:1 })
+  const { data, isLoading, isLoadingSteps } = useGetTweets(page)
+
+  const externalRef = useRef()
+
+  const { isNearScreen } = useNearScreen({
+    externalRef: isLoading ? null : externalRef,
+    once: false
+  })
+
+  const debounceHandleNextPage = useCallback(debounce(
+    () => setPage(prevPage => prevPage + 1), 200
+  ), [setPage])
+
+  useEffect(function () {
+    if (isNearScreen) debounceHandleNextPage()
+  }, [debounceHandleNextPage, isNearScreen])
 
 
-  // const { combinedData, readMore, refresh} = useInfiniteScroll(useTweetsQuery)
-  // console.log(combinedData, refresh)
+
+
   return (
     <>
 
       {
         isLoading
-          ? <div>asdasd</div>
+          ? <TweetSkeleton />
           : <>
             {
-              data?.items?.map((tweet) => {
-                return <Tweet key={tweet.id} tweet={tweet} />
+              data?.items?.map((tweet, i) => {
+                return <Tweet key={tweet.id + new Date().getUTCDate} tweet={tweet} />
               })
-            }</>
+            }
+          </>
       }
+      <div id="visor" ref={externalRef}>
+        <Center>
+          {isLoadingSteps && <Spinner />}
+        </Center>
+      </div>
 
-
-      {/* <Button onClick={readMore}>
-        Leer mas
-      </Button> */}
     </>
   )
 }

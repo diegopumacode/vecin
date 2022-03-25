@@ -1,30 +1,29 @@
-import { Box } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useAddCommentTweetMutation, useTweetQuery } from '../../api/tweetsApi'
+import React from 'react'
 import CommentSkeleton from '../../components/skeletons/CommentSkeleton'
-import TweetForm from '../../components/TweetForm'
+import TweetForm from '../../components/tweetForm'
+import useCreateComment from '../../hooks/useCreateComment'
+import useGetComments from '../../hooks/useGetComments'
+import useGetTweetById from '../../hooks/useGetTweetById'
 import Tweet from '../tweets/Tweet'
-import { createComment, findByIdTweet } from './api'
 import CommentTweet from './CommentTweet'
+import { Box } from '@chakra-ui/react'
 
 export default function Comment({ idTweet }) {
 
-    const { data, error, isLoading, currentData } = useTweetQuery(idTweet)
-    const [addCommentTweet] = useAddCommentTweetMutation()
+    const { data, isLoading } = useGetTweetById(idTweet)
+    const { data: comments, isLoading: isLoadingComments, reset } = useGetComments(idTweet)
+    const { createTweet, isLoading: isLoadingCreateComment, isSuccess: isSuccessCreateComment } = useCreateComment()
 
-    const formSubmit = async (values, reset) => {
-        console.log(values)
-        let data = {
-            idTweet,
-            values
-        }
-        addCommentTweet(data)
+    const formSubmit = async (item) => {
+        createTweet({ id: idTweet, body: item })
+    }
+
+    const actionAfterSubmit = () => {
+        reset()
     }
 
     return (
         <Box>
-
             <>
                 {
                     isLoading
@@ -32,14 +31,19 @@ export default function Comment({ idTweet }) {
                         : <>
 
                             <CommentTweet tweet={data} />
-                            <TweetForm onFormSubmit={formSubmit} />
-                            {
-                                data.commendsList.map(comment => <Tweet tweet={comment} key={comment.id} rese />)
-                            }
+                            <TweetForm onFormSubmit={formSubmit} isLoading={isLoadingCreateComment} isSuccess={isSuccessCreateComment} actionAfterSubmit={actionAfterSubmit} />
+
                         </>
                 }
-            </>
 
+                {
+                    isLoadingComments
+                        ? <CommentSkeleton />
+                        : <>{
+                            comments?.map(comment => <Tweet tweet={comment} key={comment.id} rese />)
+                        }</>
+                }
+            </>
         </Box>
     )
 }
