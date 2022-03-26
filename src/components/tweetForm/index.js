@@ -10,9 +10,9 @@ import {
 import { useForm } from 'react-hook-form';
 
 
-export default function TweetForm({defaultValues, onFormSubmit = () => { }, isLoading, actionAfterSubmit = ()=>{}, titleSubmit = 'Publicar Comentario', isSuccess }) {
+export default function TweetForm({ onFormSubmit = () => { }, isLoading, actionAfterSubmit = ()=>{}, titleSubmit = 'Publicar Comentario', isSuccess }) {
 
-    const { register, handleSubmit, reset } = useForm({ defaultValues })
+    const { register, handleSubmit, reset } = useForm()
     const onSubmit = handleSubmit((data) => {
         onFormSubmit(data)
     })

@@ -47,6 +47,7 @@ export default function Tweet({ tweet }) {
                         cursor='pointer'
                         fontWeight='bold'
                         fontSize='lg'
+                        as='h2'
                         _hover={{ color: 'primary' }}
                     >
                         {tweet.title}

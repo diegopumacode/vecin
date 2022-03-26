@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import Tweet from './Tweet'
 import { render } from '../../utils/test-utils'
-import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 
 test('renders content', () => {
     const tweet = {
@@ -17,9 +17,19 @@ test('renders content', () => {
         dislikes: 0,
         comments: 0
     }
-
-    render(
+    
+    const  component = render(
         <MemoryRouter>
             <Tweet tweet={tweet} />
         </MemoryRouter>)
+
+    component.queryAllByText(tweet.title)
+    component.queryAllByAltText(tweet.email)
+    component.queryAllByAltText(tweet.title)
+    component.queryAllByAltText(tweet.created)
+    component.queryAllByAltText(tweet.content)
+    component.queryAllByAltText(tweet.likes)
+    component.queryAllByAltText(tweet.dislikes)
+    component.queryAllByAltText(tweet.comments)
+    
 })

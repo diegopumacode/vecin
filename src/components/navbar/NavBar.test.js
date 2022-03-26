@@ -8,8 +8,12 @@ import { MemoryRouter} from 'react-router-dom'
 
 test('renders content', () => {
 
-    render(
+    const component = render(
         <MemoryRouter>
             <NavBar/>
         </MemoryRouter>)
+
+    component.getByText('Mi Perfil')
+    component.getByText('Mensajes')
+    component.getByText('Grupos')
 })
